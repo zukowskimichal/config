@@ -16,6 +16,51 @@ alias tomcatrun='$CATALINA_HOME/bin/startup.bat'
 alias ll='ls -alh'
 
 # maven shortcuts
+mci() {
+  mvn clean install
+}
+mcint() {
+  mvn clean install -DskipTests
+}
 
 
 # git shortcuts
+
+gcf() {
+  git checkout -b "feature/$1"
+}
+
+gc() {
+  git checkout "$1"
+}
+
+gcp() {
+  gic commit -am "$1"
+  git push origin HEAD
+}
+
+#list branches in case there is no argument, if there is a numeric argument checkout to the branch under given number
+gbs() {
+  # Get all branch names and store them in an array
+  branches=($(git branch --format="%(refname:short)"))
+
+  # If no argument is passed, list all branches
+  if [ -z "$1" ]; then
+    for i in "${!branches[@]}"; do
+      echo "[$((i+1))] ${branches[$i]}"
+    done
+  # If a numeric argument is passed, checkout the corresponding branch
+  elif [[ "$1" =~ ^[0-9]+$ ]]; then
+    branch_index=$(($1 - 1))
+    
+    # Check if the index is within the range
+    if [ "$branch_index" -ge 0 ] && [ "$branch_index" -lt "${#branches[@]}" ]; then
+      git checkout "${branches[$branch_index]}"
+    else
+      echo "Error: Invalid branch number."
+    fi
+  else
+    echo "Error: Argument must be a number."
+  fi
+}
+
