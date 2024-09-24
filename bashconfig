@@ -1,0 +1,21 @@
+# custom maven dir
+# export M2_HOME=""
+# m2 dir
+# export M2=""
+# export PATH="$M2:$PATH"
+# java opts and maven opts for local trusture keys and so on
+# MAVEN_OPTS="-Djavax.net.ssl.trustStoreTypes=jks -Djavax.net.ssl.trustStor=keystore.jks -Djavax.net.ssl.trustStorePassword=changeit"
+# JAVA_OPTS=""
+
+# aliases
+
+#tomcat
+alias tomcatrun='$CATALINA_HOME/bin/startup.bat'
+
+#misc
+alias ll='ls -alh'
+
+# maven shortcuts
+
+
+# git shortcuts
